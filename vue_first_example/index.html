@@ -1,0 +1,65 @@
+<html>
+    <head>
+        <title>
+
+        </title>
+        <style type="text/css">
+            .color-red{
+                color: red
+            }
+            .color-blue{
+                color: blue
+            }
+            .is-loading{
+                background: blue;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="root">
+            <h1 :class="className">test</h1>
+            <input type="text" id="input" v-model="message">
+            <p>{{message}}</p> 
+            <p>{{foo}}</p> 
+            <ul>
+                <li v-for="name in names" v-text="name"></li>
+            </ul>
+            <input id="nameInp" type="text" v-model="newName">
+            <button v-bind:title="title" @click="addName">Add Name</button>
+
+            <button :class="{'is-loading':isLoading}" @click="toggleClass">test</button>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.5.22/dist/vue.js"></script>
+        <script>
+            let data={
+                message:'sample message',
+                className:'color-blue',
+                foo:'name',
+                names:['Joe','Mary','Jack'],
+                newName:'',
+                title:'this is a title',
+                isLoading:false
+            };
+            
+            
+            
+            var app=new Vue({
+                el:'#root',
+                data: data,
+
+                methods:{
+                    addName(){
+                       this.names.push(this.newName);
+                       this.newName='';
+                    },
+                    toggleClass(){
+                       this.isLoading=true;  
+                    }
+                }
+            })
+
+            
+        </script>
+    </body>
+</html>

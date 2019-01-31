@@ -1,0 +1,73 @@
+<html>
+    <head>
+        <title>
+
+        </title>
+        <style type="text/css">
+            .color-red{
+                color: red
+            }
+            .color-blue{
+                color: blue
+            }
+            .is-loading{
+                background: blue;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="root">
+            <h2>Completed Tasks</h2>
+            <h1>
+                {{reversedMessage}}
+            </h1>
+            <ul>
+                <li v-for="task in tasks"v-if="task.completed" v-text="task.description"></li>
+                
+            </ul>
+            <h2>Incomplete Tasks</h2>
+            <ul>
+                <li v-for="task in incompleteTasks" v-text="task.description"></li>
+            <button @click="complete()">complete</button>
+
+            </ul>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.5.22/dist/vue.js"></script>
+        <script>
+        
+            
+            var app=new Vue({
+                el:'#root',
+                data:{
+                    message:"This is a sample message",
+                    tasks:[
+                        {description:'Go to the store',completed:true},
+                        {description:'Finish screencast',completed:true},
+                        {description:'Make a donation',completed:false},
+                        {description:'Clear Inbox',completed:false},
+                        {description:'Make dinner',completed:true},
+                        {description:'Clean room',completed:false}
+                    ]
+                },
+               
+                computed: {
+                    reversedMessage(){
+                        return this.message.split('').reverse().join('');
+                    },
+                    incompleteTasks(){
+                        return this.tasks.filter(task=> !task.completed);
+                    },
+                    complete(){
+                        return this.task.completed=true;
+
+                    }
+                }
+               
+          
+            })
+
+            
+        </script>
+    </body>
+</html>
